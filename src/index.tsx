@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from 'react-dom';
 import "./styles.css"
 
-export const App = () => {
+export const App = (): JSX.Element => {
   return <p>Hello</p>
 }
 
