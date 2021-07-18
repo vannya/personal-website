@@ -12,7 +12,7 @@ module.exports = {
     clean: true,
   },
   devServer: {
-    contentBase: path.join(__dirname, '../build'),
+    static: path.join(__dirname, '../build'),
     compress: true,
     port: 9000,
     open: true
