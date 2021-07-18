@@ -18,7 +18,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
-  ignorePatterns: ['**/config/*', '**/scripts/*'],
+  ignorePatterns: ['**/config/*', '**/scripts/*', '**/build/*', '**/public/*'],
   rules: {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
