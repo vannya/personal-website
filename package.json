@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack && node scripts/build.js"
+    "build": "webpack && node scripts/copyPublic.js"
   },
   "author": "Van Tabbert",
   "license": "ISC",
