@@ -5,8 +5,8 @@ import './styles.css';
 export const App = (): JSX.Element => {
 	return (
 		<>
-			<p>Hello Van</p>
-			<p>Yo</p>
+			<p>Under Development</p>
+			<p>Site Incoming!</p>
 		</>
 	);
 };
