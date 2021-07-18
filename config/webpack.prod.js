@@ -1,17 +1,36 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: { app: './src/index.tsx' },
   mode: "production",
   output: {
-    filename: 'main.js',
+    filename: '[name].[fullhash].bundle.js',
     path: path.resolve(__dirname, '../build'),
     clean: true
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        defaultVendors: {
+          filename: 'vendors.[fullhash].bundle.js',
+        },
+      },
+    },
+  },
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
+      },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
@@ -21,6 +40,24 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/i,
@@ -36,6 +73,14 @@ module.exports = {
       title: 'Van Tabbert | Software Engineer',
       inject: true,
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: "[name].[fullhash].bundle.css"
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        enabled: true,
+        files: './src/**/*.{ts,tsx,js,jsx}',
+      }
+    })
   ],
 };

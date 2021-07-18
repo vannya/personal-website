@@ -64,7 +64,6 @@ module.exports = {
           },
         ],
         exclude: /node_modules/,
-
       },
       {
         test: /\.css$/i,
