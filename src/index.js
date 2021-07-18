@@ -1,8 +1,9 @@
 import React from "react"
 import ReactDOM from 'react-dom';
+import "./styles.css"
 
 export const App = () => {
-  return <div>Hello</div>
+  return <p>Hello</p>
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));

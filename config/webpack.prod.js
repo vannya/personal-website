@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: './src/index.js',
-  mode: "development",
+  mode: "production",
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '../build'),
     clean: true
   },
   module: {
@@ -20,7 +21,11 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
     ]
   },
   plugins: [
@@ -31,5 +36,6 @@ module.exports = {
       title: 'Van Tabbert | Software Engineer',
       inject: true,
     }),
+    new MiniCssExtractPlugin()
   ],
 };

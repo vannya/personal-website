@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack && node scripts/copyPublic.js"
+    "build": "webpack --config config/webpack.dev.js && node scripts/copyPublic.js",    
+    "build:prod": "webpack --config config/webpack.prod.js && node scripts/copyPublic.js"
   },
   "author": "Van Tabbert",
   "license": "ISC",
@@ -18,8 +19,11 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
+    "css-loader": "^6.1.0",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.1.0",
+    "style-loader": "^3.1.0",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2"
   }
