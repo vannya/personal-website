@@ -4,15 +4,39 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: { app: './src/index.tsx' },
   mode: 'development',
   output: {
-    filename: 'main.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../build'),
     clean: true,
   },
+  devServer: {
+    contentBase: path.join(__dirname, '../build'),
+    compress: true,
+    port: 9000,
+    open: true
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        defaultVendors: {
+          filename: 'vendors.bundle.js',
+        },
+      },
+    },
+  },
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
+      },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,

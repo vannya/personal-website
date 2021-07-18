@@ -20,16 +20,6 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   ignorePatterns: ['**/config/*', '**/scripts/*'],
   rules: {
-    'import/extensions': [
-      'error',
-      'always',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/prefer-default-export': 'off',
@@ -39,6 +29,7 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         'no-undef': 'off',
+        "@typescript-eslint/explicit-function-return-type": ["error"]
       },
     },
   ],

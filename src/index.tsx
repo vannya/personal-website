@@ -5,7 +5,7 @@ import './styles.css';
 export const App = (): JSX.Element => {
 	return (
 		<>
-			<p>Hello</p>
+			<p>Hello Van</p>
 			<p>Yo</p>
 		</>
 	);

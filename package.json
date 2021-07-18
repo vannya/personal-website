@@ -5,6 +5,7 @@
 	"private": true,
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "npx webpack serve -c config/webpack.dev.js",
 		"build": "webpack --config config/webpack.dev.js && node scripts/copyPublic.js",
 		"build:prod": "webpack --config config/webpack.prod.js && node scripts/copyPublic.js",
 		"lint": "npx eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx"
@@ -44,6 +45,7 @@
 		"ts-loader": "^9.2.3",
 		"typescript": "^4.3.5",
 		"webpack": "^5.45.1",
-		"webpack-cli": "^4.7.2"
+		"webpack-cli": "^4.7.2",
+		"webpack-dev-server": "^3.11.2"
 	}
 }
