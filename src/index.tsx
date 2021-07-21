@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles.css';
+import './styles.scss';
 import Highlight from 'react-highlight-updated';
 import '../node_modules/highlight.js/styles/mono-blue.css';
 

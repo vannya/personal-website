@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../build'),
-    clean: true,
+    clean: true
   },
   devServer: {
     static: path.join(__dirname, '../build'),
@@ -22,20 +22,20 @@ module.exports = {
       chunks: 'all',
       cacheGroups: {
         defaultVendors: {
-          filename: 'vendors.bundle.js',
-        },
-      },
-    },
+          filename: 'vendors.bundle.js'
+        }
+      }
+    }
   },
   module: {
     rules: [
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
-        type: 'asset/resource',
+        type: 'asset/resource'
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline',
+        type: 'asset/inline'
       },
       {
         test: /\.m?js$/,
@@ -43,9 +43,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
         test: /\.tsx?$/,
@@ -53,23 +53,27 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
+              presets: ['@babel/preset-env', '@babel/preset-react']
+            }
           },
           {
             loader: 'ts-loader',
             options: {
-              transpileOnly: true,
-            },
-          },
+              transpileOnly: true
+            }
+          }
         ],
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
-    ],
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -77,14 +81,14 @@ module.exports = {
       filename: 'index.html',
       favicon: 'public/favicon.ico',
       title: 'Van Tabbert | Software Engineer',
-      inject: true,
+      inject: true
     }),
     new MiniCssExtractPlugin(),
     new ForkTsCheckerWebpackPlugin({
       eslint: {
         enabled: true,
-        files: './src/**/*.{ts,tsx,js,jsx}',
+        files: './src/**/*.{ts,tsx,js,jsx}'
       }
     })
-  ],
+  ]
 };
