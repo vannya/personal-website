@@ -11,6 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, '../build'),
     clean: true
   },
+  performance: { hints: false },
   devServer: {
     static: path.join(__dirname, '../build'),
     compress: true,
