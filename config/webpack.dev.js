@@ -23,6 +23,7 @@ module.exports = {
       chunks: 'all',
       cacheGroups: {
         defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
           filename: 'vendors.bundle.js'
         }
       }
