@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: { app: './src/index.tsx' },
@@ -12,6 +14,15 @@ module.exports = {
     clean: true
   },
   performance: { hints: false },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    modules: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules')],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: 'tsconfig.json'
+      })
+    ]
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -72,6 +83,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: "public/index.html",
       filename: "index.html",

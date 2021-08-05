@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: { app: './src/index.tsx' },
@@ -11,12 +13,25 @@ module.exports = {
     path: path.resolve(__dirname, '../build'),
     clean: true
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    modules: [
+      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, '../node_modules')
+    ],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: 'tsconfig.json'
+      })
+    ]
+  },
   performance: { hints: false },
   devServer: {
     static: path.join(__dirname, '../build'),
     compress: true,
     port: 9000,
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   optimization: {
     splitChunks: {
@@ -74,10 +89,16 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader']
       }
     ]
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       filename: 'index.html',
