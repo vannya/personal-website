@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './styles.scss';
-import Highlight from 'react-highlight-updated';
-import '../node_modules/highlight.js/styles/mono-blue.css';
+import { Home } from './pages/Home';
+import { Header } from './components/Header';
 
 export const App = (): JSX.Element => {
 	return (
 		<>
-			<Highlight className='javascript'>{`import React from "react"; \n<div>Test</div>`}</Highlight>
-			<p>Under Development</p>
-			<p>Site Incoming!</p>
+			<BrowserRouter>
+				<Header />
+				<Switch>
+					<Route exact path='/' render={Home} />
+				</Switch>
+			</BrowserRouter>
 		</>
 	);
 };
