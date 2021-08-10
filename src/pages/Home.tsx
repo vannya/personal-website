@@ -2,9 +2,9 @@ import React from 'react';
 
 export const Home = (): JSX.Element => {
 	return (
-		<div>
-			<p>Under Development</p>
-			<p>Site Incoming!</p>
+		<div className='home-page'>
+			<h1>Under Development</h1>
+			<h2>Site Incoming!</h2>
 		</div>
 	);
 };
